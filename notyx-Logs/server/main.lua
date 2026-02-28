@@ -28,13 +28,13 @@ local colors = {
 
 -- Webhooks (no se traducen las claves porque coinciden con 'category')
 Webhooks = {
-    ["default"] = "https://discord.com/api/webhooks/1473858131028349019/PyFfCjozA-q_sTjRx_OaTV8o1-1tgUbAiRO85v2Lt-cY9MkHWBUaZaYwKVVCl7YRU9FN",
-    ["screenshots"] = "https://discord.com/api/webhooks/1473858131028349019/PyFfCjozA-q_sTjRx_OaTV8o1-1tgUbAiRO85v2Lt-cY9MkHWBUaZaYwKVVCl7YRU9FN",
-    ["txadmin"] = "https://discord.com/api/webhooks/1473858131028349019/PyFfCjozA-q_sTjRx_OaTV8o1-1tgUbAiRO85v2Lt-cY9MkHWBUaZaYwKVVCl7YRU9FN",
-    ["chat"] = "https://discord.com/api/webhooks/1473858131028349019/PyFfCjozA-q_sTjRx_OaTV8o1-1tgUbAiRO85v2Lt-cY9MkHWBUaZaYwKVVCl7YRU9FN",
-    ["join/leave"] = "https://discord.com/api/webhooks/1473858131028349019/PyFfCjozA-q_sTjRx_OaTV8o1-1tgUbAiRO85v2Lt-cY9MkHWBUaZaYwKVVCl7YRU9FN",
-    ["resources"] = "https://discord.com/api/webhooks/1473858131028349019/PyFfCjozA-q_sTjRx_OaTV8o1-1tgUbAiRO85v2Lt-cY9MkHWBUaZaYwKVVCl7YRU9FN",
-    ["explosions"] = "https://discord.com/api/webhooks/1473858131028349019/PyFfCjozA-q_sTjRx_OaTV8o1-1tgUbAiRO85v2Lt-cY9MkHWBUaZaYwKVVCl7YRU9FN",
+    ["default"] = "https://discord.com/api/webhooks/",
+    ["screenshots"] = "https://discord.com/api/webhooks/",
+            ["txadmin"] = "https://discord.com/api/webhooks/",
+        ["chat"] = "https://discord.com/api/webhooks/",
+        ["join/leave"] = "https://discord.com/api/webhooks/",
+        ["resources"] = "https://discord.com/api/webhooks/",
+    ["explosions"] = "https://discord.com/api/webhooks/",
 }
 
 -- Función principal para crear y enviar logs a Discord
