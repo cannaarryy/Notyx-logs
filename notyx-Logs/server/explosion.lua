@@ -1,0 +1,227 @@
+-- Etiquetas de explosiones (no se traducen porque son identificadores internos)
+local explosionTags = {
+    [0] = "GRENADE", [1] = "GRENADELAUNCHER", [2] = "STICKYBOMB", [3] = "MOLOTOV",
+    [4] = "ROCKET", [5] = "TANKSHELL", [6] = "HI_OCTANE", [7] = "CAR",
+    [8] = "PLANE", [9] = "PETROL_PUMP", [10] = "BIKE", [11] = "DIR_STEAM",
+    [12] = "DIR_FLAME", [13] = "DIR_WATER_HYDRANT", [14] = "DIR_GAS_CANISTER", [15] = "BOAT",
+    [16] = "SHIP_DESTROY", [17] = "TRUCK", [18] = "BULLET", [19] = "SMOKEGRENADELAUNCHER",
+    [20] = "SMOKEGRENADE", [21] = "BZGAS", [22] = "FLARE", [23] = "GAS_CANISTER",
+    [24] = "EXTINGUISHER", [25] = "_0x988620B8", [26] = "TRAIN", [27] = "BARREL",
+    [28] = "PROPANE", [29] = "BLIMP", [30] = "DIR_FLAME_EXPLODE", [31] = "TANKER",
+    [32] = "PLANE_ROCKET", [33] = "VEHICLE_BULLET", [34] = "GAS_TANK", [35] = "BIRD_CRAP",
+    [36] = "RAILGUN", [37] = "BLIMP2", [38] = "FIREWORK", [39] = "SNOWBALL",
+    [40] = "PROXMINE", [41] = "VALKYRIE_CANNON", [42] = "AIR_DEFENCE", [43] = "PIPEBOMB",
+    [44] = "VEHICLEMINE", [45] = "EXPLOSIVEAMMO", [46] = "APCSHELL", [47] = "BOMB_CLUSTER",
+    [48] = "BOMB_GAS", [49] = "BOMB_INCENDIARY", [50] = "BOMB_STANDARD", [51] = "TORPEDO",
+    [52] = "TORPEDO_UNDERWATER", [53] = "BOMBUSHKA_CANNON", [54] = "BOMB_CLUSTER_SECONDARY",
+    [55] = "HUNTER_BARRAGE", [56] = "HUNTER_CANNON", [57] = "ROGUE_CANNON", [58] = "MINE_UNDERWATER",
+    [59] = "ORBITAL_CANNON", [60] = "BOMB_STANDARD_WIDE", [61] = "EXPLOSIVEAMMO_SHOTGUN",
+    [62] = "OPPRESSOR2_CANNON", [63] = "MORTAR_KINETIC", [64] = "VEHICLEMINE_KINETIC",
+    [65] = "VEHICLEMINE_EMP", [66] = "VEHICLEMINE_SPIKE", [67] = "VEHICLEMINE_SLICK",
+    [68] = "VEHICLEMINE_TAR", [69] = "SCRIPT_DRONE", [70] = "RAYGUN", [71] = "BURIEDMINE",
+    [72] = "SCRIPT_MISSILE", [73] = "RCTANK_ROCKET", [74] = "BOMB_WATER",
+    [75] = "BOMB_WATER_SECONDARY", [76] = "_0xF728C4A9", [77] = "_0xBAEC056F",
+    [78] = "FLASHGRENADE", [79] = "STUNGRENADE", [80] = "_0x763D3B3B",
+    [81] = "SCRIPT_MISSILE_LARGE", [82] = "SUBMARINE_BIG",
+}
+
+-- Niveles de peligro (las claves internas "low", "medium", "high", "critical" se mantienen en inglés)
+local explosionDangerLevels = {
+    low = {
+        [6] = true,   -- HI_OCTANE
+        [7] = true,   -- CAR
+        [8] = true,   -- PLANE
+        [9] = true,   -- PETROL_PUMP
+        [10] = true,  -- BIKE
+        [11] = true,  -- DIR_STEAM
+        [12] = true,  -- DIR_FLAME
+        [13] = true,  -- DIR_WATER_HYDRANT
+        [14] = true,  -- DIR_GAS_CANISTER
+        [15] = true,  -- BOAT
+        [16] = true,  -- SHIP_DESTROY
+        [17] = true,  -- TRUCK
+        [22] = true,  -- FLARE
+        [23] = true,  -- GAS_CANISTER
+        [24] = true,  -- EXTINGUISHER
+        [26] = true,  -- TRAIN
+        [27] = true,  -- BARREL
+        [28] = true,  -- PROPANE
+        [29] = true,  -- BLIMP
+        [30] = true,  -- DIR_FLAME_EXPLODE
+        [31] = true,  -- TANKER
+        [34] = true,  -- GAS_TANK
+        [35] = true,  -- BIRD_CRAP
+        [37] = true,  -- BLIMP2
+        [38] = true,  -- FIREWORK
+        [39] = true,  -- SNOWBALL
+    },
+    
+    medium = {
+        [0] = true,   -- GRENADE
+        [18] = true,  -- BULLET
+        [19] = true,  -- SMOKEGRENADELAUNCHER
+        [20] = true,  -- SMOKEGRENADE
+        [21] = true,  -- BZGAS
+        [25] = true,  -- _0x988620B8
+        [33] = true,  -- VEHICLE_BULLET
+        [74] = true,  -- BOMB_WATER
+        [75] = true,  -- BOMB_WATER_SECONDARY
+        [76] = true,  -- _0xF728C4A9
+        [77] = true,  -- _0xBAEC056F
+        [78] = true,  -- FLASHGRENADE
+        [79] = true,  -- STUNGRENADE
+        [80] = true,  -- _0x763D3B3B
+    },
+    
+    high = {
+        [1] = true,   -- GRENADELAUNCHER
+        [2] = true,   -- STICKYBOMB
+        [3] = true,   -- MOLOTOV
+        [4] = true,   -- ROCKET
+        [32] = true,  -- PLANE_ROCKET
+        [40] = true,  -- PROXMINE
+        [43] = true,  -- PIPEBOMB
+        [44] = true,  -- VEHICLEMINE
+        [45] = true,  -- EXPLOSIVEAMMO
+        [47] = true,  -- BOMB_CLUSTER
+        [48] = true,  -- BOMB_GAS
+        [49] = true,  -- BOMB_INCENDIARY
+        [50] = true,  -- BOMB_STANDARD
+        [51] = true,  -- TORPEDO
+        [52] = true,  -- TORPEDO_UNDERWATER
+        [54] = true,  -- BOMB_CLUSTER_SECONDARY
+        [58] = true,  -- MINE_UNDERWATER
+        [60] = true,  -- BOMB_STANDARD_WIDE
+        [61] = true,  -- EXPLOSIVEAMMO_SHOTGUN
+        [63] = true,  -- MORTAR_KINETIC
+        [64] = true,  -- VEHICLEMINE_KINETIC
+        [65] = true,  -- VEHICLEMINE_EMP
+        [66] = true,  -- VEHICLEMINE_SPIKE
+        [67] = true,  -- VEHICLEMINE_SLICK
+        [68] = true,  -- VEHICLEMINE_TAR
+        [71] = true,  -- BURIEDMINE
+        [73] = true,  -- RCTANK_ROCKET
+    },
+    
+    critical = {
+        [5] = true,   -- TANKSHELL
+        [36] = true,  -- RAILGUN
+        [41] = true,  -- VALKYRIE_CANNON
+        [42] = true,  -- AIR_DEFENCE
+        [46] = true,  -- APCSHELL
+        [53] = true,  -- BOMBUSHKA_CANNON
+        [55] = true,  -- HUNTER_BARRAGE
+        [56] = true,  -- HUNTER_CANNON
+        [57] = true,  -- ROGUE_CANNON
+        [59] = true,  -- ORBITAL_CANNON
+        [62] = true,  -- OPPRESSOR2_CANNON
+        [69] = true,  -- SCRIPT_DRONE
+        [70] = true,  -- RAYGUN
+        [72] = true,  -- SCRIPT_MISSILE
+        [81] = true,  -- SCRIPT_MISSILE_LARGE
+        [82] = true,  -- SUBMARINE_BIG
+    }
+}
+
+-- Función para obtener nivel de peligro (solo se traduce lo que se muestra)
+local function GetDangerLevel(explosionType)
+    if explosionDangerLevels.critical[explosionType] then
+        return "🔴 CRÍTICO", "darkred"
+    elseif explosionDangerLevels.high[explosionType] then
+        return "🟠 ALTO", "red"
+    elseif explosionDangerLevels.medium[explosionType] then
+        return "🟡 MEDIO", "orange"
+    elseif explosionDangerLevels.low[explosionType] then
+        return "🟢 BAJO", "yellow"
+    else
+        return "⚪ DESCONOCIDO", "grey"
+    end
+end
+
+-- Detección de spam de explosiones
+local explosionSpamTracker = {}
+local LIMITE_SPAM_EXPLOSIONES = 5 
+local TIEMPO_VENTANA_EXPLOSIONES = 10 
+
+AddEventHandler("explosionEvent", function(source, explosion)
+    local playerName = GetPlayerName(source) or 'Desconocido'
+    local explosionType = tonumber(explosion.explosionType)
+    local explosionName = explosionTags[explosionType] or "Desconocido"
+    local dangerLevel, dangerColor = GetDangerLevel(explosionType)
+    
+    local license = GetPlayerIdentifierByType(source, 'license') or GetPlayerIdentifierByType(source, 'license2') or 'Desconocido'
+    local steam = GetPlayerIdentifierByType(source, 'steam') or 'No vinculado'
+    
+    local coords = explosion.posX and vector3(explosion.posX, explosion.posY, explosion.posZ) or nil
+    local coordsText = coords and string.format("X: %.2f, Y: %.2f, Z: %.2f", coords.x, coords.y, coords.z) or "Desconocidas"
+    
+    local currentTime = os.time()
+    if not explosionSpamTracker[source] then
+        explosionSpamTracker[source] = { count = 0, firstTime = currentTime }
+    end
+    
+    if currentTime - explosionSpamTracker[source].firstTime > TIEMPO_VENTANA_EXPLOSIONES then
+        explosionSpamTracker[source] = { count = 1, firstTime = currentTime }
+    else
+        explosionSpamTracker[source].count = explosionSpamTracker[source].count + 1
+    end
+    
+    local isSpamming = explosionSpamTracker[source].count >= LIMITE_SPAM_EXPLOSIONES
+    
+    local logColor = isSpamming and "darkred" or dangerColor
+    local actionText = isSpamming and "Spam de explosiones detectado" or "Explosión detectada"
+    
+    local extraSections = {
+        {
+            title = "Propiedades de la explosión",
+            data = {
+                { name = "Escala de daño", value = "x" .. (explosion.damageScale or 1.0) },
+                { name = "Sacudida de cámara", value = "x" .. (explosion.cameraShake or 1.0) },
+                { name = "Silenciosa", value = not explosion.isAudible and "Sí" or "No" },
+                { name = "Invisible", value = explosion.isInvisible and "Sí" or "No" },
+            }
+        },
+        {
+            title = "Información de ubicación",
+            data = {
+                { name = "Coordenadas", value = coordsText },
+                { name = "Fecha y hora", value = os.date('%Y-%m-%d %H:%M:%S') },
+            }
+        }
+    }
+    
+    if isSpamming then
+        table.insert(extraSections, {
+            title = "⚠️ Detección de spam",
+            data = {
+                { name = "Cantidad de explosiones", value = explosionSpamTracker[source].count .. " en " .. TIEMPO_VENTANA_EXPLOSIONES .. " segundos" },
+                { name = "Estado", value = "🚨 POSIBLE TRAMPOSO" },
+            }
+        })
+    end
+    
+    exports[GetCurrentResourceName()]:CreateLog({
+        category = "explosions",
+        title = "Registros de Explosiones",
+        action = actionText,
+        color = logColor,
+        players = {
+            { id = source, role = "Origen" },
+        },
+        info = {
+            { name = "Nombre del jugador", value = playerName },
+            { name = "Tipo de explosión", value = explosionName .. " (" .. explosionType .. ")" },
+            { name = "Nivel de peligro", value = dangerLevel },
+        },
+        extra = extraSections,
+        takeScreenshot = true
+    })
+end)
+
+-- Limpiar tracker de spam al desconectarse
+AddEventHandler('playerDropped', function(reason)
+    local src = source
+    if explosionSpamTracker[src] then
+        explosionSpamTracker[src] = nil
+    end
+end)
