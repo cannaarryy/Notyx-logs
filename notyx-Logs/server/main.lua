@@ -1,4 +1,3 @@
--- Tabla de colores para embeds de Discord (nombres en inglés porque son claves)
 local colors = {
     ['default'] = 0,
     ['aqua'] = 1752220,
@@ -326,3 +325,4 @@ exports("CreateLog", function(data)
     CreateLog(GetInvokingResource() ~= GetCurrentResourceName() and GetInvokingResource() or nil, data)
 
 end)
+
