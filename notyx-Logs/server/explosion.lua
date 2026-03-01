@@ -1,4 +1,3 @@
--- Etiquetas de explosiones (no se traducen porque son identificadores internos)
 local explosionTags = {
     [0] = "GRENADE", [1] = "GRENADELAUNCHER", [2] = "STICKYBOMB", [3] = "MOLOTOV",
     [4] = "ROCKET", [5] = "TANKSHELL", [6] = "HI_OCTANE", [7] = "CAR",
@@ -123,7 +122,6 @@ local explosionDangerLevels = {
     }
 }
 
--- Función para obtener nivel de peligro (solo se traduce lo que se muestra)
 local function GetDangerLevel(explosionType)
     if explosionDangerLevels.critical[explosionType] then
         return "🔴 CRÍTICO", "darkred"
@@ -224,4 +222,5 @@ AddEventHandler('playerDropped', function(reason)
     if explosionSpamTracker[src] then
         explosionSpamTracker[src] = nil
     end
+
 end)
