@@ -26,7 +26,6 @@ local colors = {
     ['yellow'] = 16776960
 }
 
--- Webhooks (no se traducen las claves porque coinciden con 'category')
 Webhooks = {
     ["default"] = "https://discord.com/api/webhooks/",
     ["screenshots"] = "https://discord.com/api/webhooks/",
@@ -325,4 +324,5 @@ end
 -- Export público
 exports("CreateLog", function(data)
     CreateLog(GetInvokingResource() ~= GetCurrentResourceName() and GetInvokingResource() or nil, data)
+
 end)
